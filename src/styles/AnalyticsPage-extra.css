@@ -1,0 +1,61 @@
+* {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        /* Stats Cards */
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .stat-box {
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+            background: #007bff;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 3px 8px rgba(0,0,0,0.2);
+        }
+        /* Charts */
+        .chart-container {
+            margin-top: 30px;
+        }
+        canvas {
+            background: white;
+            border-radius: 10px;
+            max-width: 100%;
+        }
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            .stat-box {
+                width: 90%;
+                text-align: center;
+            }
+        }
+
