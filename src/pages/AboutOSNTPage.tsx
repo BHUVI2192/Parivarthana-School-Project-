@@ -8,7 +8,7 @@ export default function AboutOSNTPage() {
 
   return (
     <main className="about-osnt-page">
-      <section className="skrollable skrollable-between u-align-center u-clearfix u-container-align-center u-image u-parallax u-shading u-section-1" id="sec-b4ad" style={{ backgroundImage: 'url("/images/1920_1280.jpg")' }}>
+      <section className="skrollable skrollable-between u-align-center u-clearfix u-container-align-center u-image u-parallax u-shading u-section-1" id="sec-b4ad" style={{ backgroundImage: 'url("/images/img3.jpg")' }}>
         <div className="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-xl u-sheet-1">
           <h1 className="u-align-center u-custom-font u-heading-font u-text u-text-default u-text-1"> About OSNT</h1>
         </div>
@@ -30,7 +30,7 @@ export default function AboutOSNTPage() {
                 </div>
                 <div className="u-size-42">
                   <div className="u-layout-col">
-                    <div className="u-container-style u-image u-layout-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/1920_1280.jpg")' }}>
+                    <div className="u-container-style u-image u-layout-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/img3.jpg")' }}>
                       <div className="u-container-layout u-container-layout-2"></div>
                     </div>
                     <div className="u-align-justify u-container-style u-layout-cell u-size-30 u-layout-cell-3">
@@ -61,7 +61,7 @@ export default function AboutOSNTPage() {
                 </div>
                 <div className="u-size-42">
                   <div className="u-layout-col">
-                    <div className="u-container-style u-image u-layout-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/1920_1280.jpg")' }}>
+                    <div className="u-container-style u-image u-layout-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/img3.jpg")' }}>
                       <div className="u-container-layout u-container-layout-2"></div>
                     </div>
                     <div className="u-align-justify u-container-style u-layout-cell u-size-30 u-layout-cell-3">
@@ -92,7 +92,7 @@ export default function AboutOSNTPage() {
                 </div>
                 <div className="u-size-42">
                   <div className="u-layout-col">
-                    <div className="u-container-style u-image u-layout-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/DSC_0129-scaled.jpg")' }}>
+                    <div className="u-container-style u-image u-layout-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/img3.jpg")' }}>
                       <div className="u-container-layout u-container-layout-2"></div>
                     </div>
                     <div className="u-align-justify u-container-style u-layout-cell u-size-30 u-layout-cell-3">
@@ -123,7 +123,7 @@ export default function AboutOSNTPage() {
                 </div>
                 <div className="u-size-42">
                   <div className="u-layout-col">
-                    <div className="u-container-style u-image u-layout-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/DSC_0129-scaled.jpg")' }}>
+                    <div className="u-container-style u-image u-layout-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/img3.jpg")' }}>
                       <div className="u-container-layout u-container-layout-2"></div>
                     </div>
                     <div className="u-align-justify u-container-style u-layout-cell u-size-30 u-layout-cell-3">
@@ -154,7 +154,7 @@ export default function AboutOSNTPage() {
                 </div>
                 <div className="u-size-42">
                   <div className="u-layout-col">
-                    <div className="u-container-style u-image u-layout-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/DSC_0129-scaled.jpg")' }}>
+                    <div className="u-container-style u-image u-layout-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/img3.jpg")' }}>
                       <div className="u-container-layout u-container-layout-2"></div>
                     </div>
                     <div className="u-align-justify u-container-style u-layout-cell u-size-30 u-layout-cell-3">

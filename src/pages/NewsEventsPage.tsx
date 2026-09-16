@@ -8,7 +8,7 @@ export default function NewsEventsPage() {
 
   return (
     <main className="news-events-page">
-      <section className="skrollable skrollable-between u-align-center u-clearfix u-container-align-center u-image u-parallax u-shading u-section-1" id="sec-b4ad" style={{ backgroundImage: 'url("/images/DSC_0129-scaled.jpg")' }}>
+      <section className="skrollable skrollable-between u-align-center u-clearfix u-container-align-center u-image u-parallax u-shading u-section-1" id="sec-b4ad" style={{ backgroundImage: 'url("/images/img3.jpg")' }}>
         <div className="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-xl u-sheet-1">
           <h1 className="u-align-center u-custom-font u-heading-font u-text u-text-default u-text-1"> News &amp; Events</h1>
         </div>

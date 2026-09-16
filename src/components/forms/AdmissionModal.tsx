@@ -38,7 +38,7 @@ export default function AdmissionModal({ onClose }: AdmissionModalProps) {
   const formRef = useRef<HTMLFormElement>(null)
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  const phoneRegex = /^[0-9+\s\-]{7,15}$/
+  const phoneRegex = /^[0-9+\s-]{7,15}$/
 
   function updateSteps(updated: FieldState) {
     const checks = {
@@ -178,7 +178,7 @@ export default function AdmissionModal({ onClose }: AdmissionModalProps) {
                       placeholder="+91 98765 43210"
                       required
                       autoComplete="tel"
-                      pattern="[0-9+\s\-]{7,15}"
+                      pattern="[0-9+\s-]{7,15}"
                       value={fields.contact}
                       onChange={handleChange}
                     />

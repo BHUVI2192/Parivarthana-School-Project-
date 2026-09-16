@@ -13,6 +13,7 @@ import ContactPage from './pages/ContactPage'
 import AnalyticsPage from './pages/AnalyticsPage'
 import NewsEventsPage from './pages/NewsEventsPage'
 import SearchPage from './pages/SearchPage'
+import NotFoundPage from './pages/NotFoundPage'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="analytics" element={<AnalyticsPage />} />
           <Route path="news-events" element={<NewsEventsPage />} />
           <Route path="search" element={<SearchPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

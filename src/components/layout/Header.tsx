@@ -1,16 +1,20 @@
 import { Link, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Header() {
   const location = useLocation()
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const closeMenu = () => setMenuOpen(false)
 
   // Re-initialize Nicepage menu behavior after navigation
   useEffect(() => {
+    closeMenu()
     // Nicepage's menu JS relies on DOM ready; trigger it after route changes
     if (typeof window !== 'undefined' && (window as any).nicepage) {
       try {
         (window as any).nicepage.init?.()
-      } catch (_) { /* ignore */ }
+      } catch { /* ignore */ }
     }
   }, [location])
 
@@ -24,12 +28,15 @@ export default function Header() {
       data-animation-direction=""
     >
       <div className="u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-sheet-1">
-        <nav className="u-align-left u-dropdown-icon u-menu u-menu-dropdown u-offcanvas u-menu-1">
+        <nav className={`u-align-left u-dropdown-icon u-menu u-menu-dropdown u-offcanvas u-menu-1${menuOpen ? ' open' : ''}`}>
           {/* Hamburger */}
           <div className="menu-collapse" style={{ fontSize: '1rem', letterSpacing: '0px', fontWeight: 700 }}>
             <a
               className="u-button-style u-custom-active-border-color u-custom-active-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-hover-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-decoration u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-hamburger-link u-nav-link u-text-custom-color-7 u-hamburger-link-1"
               href="#"
+              onClick={(event) => { event.preventDefault(); setMenuOpen(true) }}
+              aria-label="Open navigation menu"
+              aria-expanded={menuOpen}
             >
               <svg className="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 302 302">
                 <use xlinkHref="#svg-5c50"></use>
@@ -154,7 +161,7 @@ export default function Header() {
                     <li className="u-nav-item">
                       <a
                         className="u-active-custom-color-5 u-button-style u-custom-color-13 u-hover-white u-nav-link u-text-active-white u-text-hover-custom-color-3 u-text-white"
-                        href="/360virtualtour/index.html"
+                        href="https://parivarthanaschool.com/360virtualtour/index.html"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -207,7 +214,7 @@ export default function Header() {
           <div className="u-custom-menu u-nav-container-collapse">
             <div className="u-align-center u-black u-container-align-center u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav u-sidenav-1">
               <div className="u-inner-container-layout u-sidenav-overflow" style={{ padding: '0px' }}>
-                <div className="u-menu-close"></div>
+                <button className="u-menu-close" type="button" onClick={closeMenu} aria-label="Close navigation menu"></button>
                 <ul className="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-5">
                   <li className="u-nav-item">
                     <Link className="u-button-style u-nav-link" to="/">Home</Link>
@@ -249,7 +256,7 @@ export default function Header() {
                           <Link className="u-button-style u-custom-color-13 u-nav-link" to="/campus-life">Life at Parivarthana</Link>
                         </li>
                         <li className="u-nav-item">
-                          <a className="u-button-style u-custom-color-13 u-nav-link" href="/360virtualtour/index.html" target="_blank" rel="noopener noreferrer">360° Virtual Tour</a>
+                          <a className="u-button-style u-custom-color-13 u-nav-link" href="https://parivarthanaschool.com/360virtualtour/index.html" target="_blank" rel="noopener noreferrer">360° Virtual Tour</a>
                         </li>
                         <li className="u-nav-item">
                           <Link className="u-button-style u-custom-color-13 u-nav-link" to="/gallery">Gallery</Link>
@@ -275,7 +282,7 @@ export default function Header() {
                 </Link>
               </div>
             </div>
-            <div className="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+            <div className="u-black u-menu-overlay u-opacity u-opacity-70" onClick={closeMenu} aria-hidden="true"></div>
           </div>
         </nav>
 

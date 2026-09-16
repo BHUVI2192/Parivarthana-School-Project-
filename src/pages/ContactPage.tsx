@@ -8,7 +8,7 @@ export default function ContactPage() {
 
   return (
     <main className="contact-page">
-      <section className="u-align-center u-clearfix u-container-align-center u-image u-shading u-section-1" id="carousel_c500" style={{ backgroundImage: 'url("/images/DSC_0129-scaled.jpg")' }}>
+      <section className="u-align-center u-clearfix u-container-align-center u-image u-shading u-section-1" id="carousel_c500" style={{ backgroundImage: 'url("/images/img3.jpg")' }}>
         <div className="u-clearfix u-sheet u-sheet-1">
           <div className="custom-expanded u-align-center u-container-style u-group u-radius-30 u-shape-round u-white u-group-1">
             <div className="u-container-layout u-valign-middle-xs u-container-layout-1">

@@ -8,7 +8,7 @@ export default function CampusLifePage() {
 
   return (
     <main className="campus-life-page">
-      <section className="u-clearfix u-image u-section-1" id="sec-5af1" style={{ backgroundImage: 'url("/images/DSC_0129-scaled.jpg")' }}>
+      <section className="u-clearfix u-image u-section-1" id="sec-5af1" style={{ backgroundImage: 'url("/images/img3.jpg")' }}>
         <div className="u-clearfix u-sheet u-sheet-1">
           <div className="u-container-align-left u-container-style u-group u-radius-50 u-shape-round u-white u-group-1">
             <div className="u-container-layout u-valign-bottom-xs u-container-layout-1">

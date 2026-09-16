@@ -14,7 +14,7 @@ export default function AdmissionsPage() {
           <div className="data-layout-selected u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
             <div className="u-layout">
               <div className="u-layout-row">
-                <div className="u-align-left u-container-align-left u-container-style u-image u-layout-cell u-left-cell u-size-30 u-size-xs-60 u-image-1" style={{ backgroundImage: 'url("/images/DSC_0129-scaled.jpg")' }}>
+                <div className="u-align-left u-container-align-left u-container-style u-image u-layout-cell u-left-cell u-size-30 u-size-xs-60 u-image-1" style={{ backgroundImage: 'url("/images/img3.jpg")' }}>
                   <div className="u-container-layout u-valign-middle u-container-layout-1"></div>
                 </div>
                 <div className="u-align-left u-container-align-left u-container-style u-custom-color-5 u-layout-cell u-right-cell u-size-30 u-size-xs-60 u-layout-cell-2">

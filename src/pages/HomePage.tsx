@@ -18,7 +18,7 @@ export default function HomePage() {
     if (typeof window !== 'undefined' && (window as any).nicepage) {
       try {
         (window as any).nicepage.init?.()
-      } catch (_) { /* ignore */ }
+      } catch { /* ignore */ }
     }
   }, [])
 

@@ -8,7 +8,7 @@ export default function LeadershipPage() {
 
   return (
     <main className="leadership-page">
-      <section className="skrollable skrollable-between u-align-center u-clearfix u-container-align-center u-image u-parallax u-shading u-section-1" id="sec-b4ad" style={{ backgroundImage: 'url("/images/DSC_0129-scaled.jpg")' }}>
+      <section className="skrollable skrollable-between u-align-center u-clearfix u-container-align-center u-image u-parallax u-shading u-section-1" id="sec-b4ad" style={{ backgroundImage: 'url("/images/img3.jpg")' }}>
         <div className="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-xl u-sheet-1">
           <h1 className="u-align-center u-custom-font u-heading-font u-text u-text-default u-text-1"> Leadership</h1>
         </div>
@@ -28,7 +28,7 @@ export default function LeadershipPage() {
                   </p>
                 </div>
               </div>
-              <div className="u-container-style u-image u-layout-cell u-left-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/Doc.png")' }}>
+              <div className="u-container-style u-image u-layout-cell u-left-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/PERSON871.jpg")' }}>
                 <div className="u-container-layout u-container-layout-2"></div>
               </div>
             </div>
@@ -50,7 +50,7 @@ export default function LeadershipPage() {
                   </p>
                 </div>
               </div>
-              <div className="u-container-style u-image u-layout-cell u-left-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/Manju.png")' }}>
+              <div className="u-container-style u-image u-layout-cell u-left-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/PERSON731.jpg")' }}>
                 <div className="u-container-layout u-container-layout-2"></div>
               </div>
             </div>
@@ -72,7 +72,7 @@ export default function LeadershipPage() {
                   </p>
                 </div>
               </div>
-              <div className="u-container-style u-image u-layout-cell u-left-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/kumar.png")' }}>
+              <div className="u-container-style u-image u-layout-cell u-left-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/JerlinKumarA2.JPG")' }}>
                 <div className="u-container-layout u-container-layout-2"></div>
               </div>
             </div>
@@ -94,7 +94,7 @@ export default function LeadershipPage() {
                   </p>
                 </div>
               </div>
-              <div className="u-container-style u-image u-layout-cell u-left-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/Dananjay.png")' }}>
+              <div className="u-container-style u-image u-layout-cell u-left-cell u-size-30 u-image-1" style={{ backgroundImage: 'url("/images/PERSON951.jpg")' }}>
                 <div className="u-container-layout u-container-layout-2"></div>
               </div>
             </div>
