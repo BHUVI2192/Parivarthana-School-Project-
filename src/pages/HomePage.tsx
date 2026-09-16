@@ -1,20 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import AdmissionModal from '../components/forms/AdmissionModal'
 import '../styles/home-page.css'
-import '../styles/admission-modal.css'
 
 export default function HomePage() {
-  const [showModal, setShowModal] = useState(false)
-
-  // Show the modal after 3 seconds (matching original timer behavior)
-  useEffect(() => {
-    const timer = setTimeout(() => setShowModal(true), 3000)
-    return () => clearTimeout(timer)
-  }, [])
-
   // Re-init Nicepage animations when page loads
   useEffect(() => {
+    document.title = 'Parivarthana Residential School and PU College'
     if (typeof window !== 'undefined' && (window as any).nicepage) {
       try {
         (window as any).nicepage.init?.()
@@ -311,10 +302,8 @@ export default function HomePage() {
                             </p>
 
                             {/* CTA Button */}
-                            <a
-                              href="https://parivarthanaschool.com/360virtualtour/"
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <Link
+                              to="/360virtualtour"
                               className="u-btn u-button-style"
                               style={{
                                 backgroundColor: '#F15412',
@@ -330,7 +319,7 @@ export default function HomePage() {
                               onMouseOut={(e) => ((e.currentTarget as HTMLElement).style.transform = 'scale(1)')}
                             >
                               Explore 360° Tour →
-                            </a>
+                            </Link>
                           </div>
                         </div>
 
@@ -615,7 +604,6 @@ export default function HomePage() {
       </section>
 
       {/* ══ Admission Enquiry Modal ══ */}
-      {showModal && <AdmissionModal onClose={() => setShowModal(false)} />}
     </>
   )
 }

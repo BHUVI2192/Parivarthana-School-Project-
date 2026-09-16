@@ -14,11 +14,13 @@ import AnalyticsPage from './pages/AnalyticsPage'
 import NewsEventsPage from './pages/NewsEventsPage'
 import SearchPage from './pages/SearchPage'
 import NotFoundPage from './pages/NotFoundPage'
+import VirtualTourPage from './pages/VirtualTourPage'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/360virtualtour" element={<VirtualTourPage />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="about-osnt" element={<AboutOSNTPage />} />

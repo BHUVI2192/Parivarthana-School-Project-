@@ -7,7 +7,7 @@ export default function GalleryPage() {
   }, [])
 
   const images = [
-    "/images/WhatsAppImage2024-07-22at8.41.01PM.jpeg",
+    "/images/WhatsAppImage2024-07-22at8.40.08PM.jpeg",
     "/images/DSCN0712-1.jpg",
     "/images/WhatsAppImage2024-07-22at8.40.08PM.jpeg",
     "/images/IMG_20220707_122745.jpg",

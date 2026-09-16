@@ -22,8 +22,7 @@ export default function AboutOSNTPage() {
                   <div className="u-layout-row">
                     <div className="u-align-center u-container-align-center u-container-style u-custom-color-5 u-layout-cell u-size-60 u-layout-cell-1">
                       <div className="u-container-layout u-valign-top-xs u-container-layout-1">
-                        <h2 className="u-align-left u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-1">. <span style={{ fontWeight: 700 }}></span>
-                        </h2>
+                        <span className="about-osnt-marker" aria-hidden="true" />
                       </div>
                     </div>
                   </div>
@@ -54,7 +53,7 @@ export default function AboutOSNTPage() {
                   <div className="u-layout-row">
                     <div className="u-align-center u-container-align-center u-container-style u-custom-color-4 u-layout-cell u-size-60 u-layout-cell-1">
                       <div className="u-container-layout u-container-layout-1">
-                        <h2 className="u-align-left u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-1">..</h2>
+                        <span className="about-osnt-marker" aria-hidden="true" />
                       </div>
                     </div>
                   </div>
@@ -85,7 +84,7 @@ export default function AboutOSNTPage() {
                   <div className="u-layout-row">
                     <div className="u-align-center u-container-align-center u-container-align-center-lg u-container-align-center-xl u-container-style u-custom-color-6 u-layout-cell u-size-60 u-layout-cell-1">
                       <div className="u-container-layout u-valign-top-md u-valign-top-sm u-valign-top-xs u-container-layout-1">
-                        <h2 className="u-align-left u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-1">...</h2>
+                        <span className="about-osnt-marker" aria-hidden="true" />
                       </div>
                     </div>
                   </div>
@@ -116,7 +115,7 @@ export default function AboutOSNTPage() {
                   <div className="u-layout-row">
                     <div className="u-align-center u-container-align-center u-container-align-center-lg u-container-align-center-xl u-container-style u-custom-color-5 u-layout-cell u-size-60 u-layout-cell-1">
                       <div className="u-container-layout u-valign-top-xs u-container-layout-1">
-                        <h2 className="u-align-left u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-1">....</h2>
+                        <span className="about-osnt-marker" aria-hidden="true" />
                       </div>
                     </div>
                   </div>
@@ -147,7 +146,7 @@ export default function AboutOSNTPage() {
                   <div className="u-layout-row">
                     <div className="u-align-center u-container-align-center u-container-align-center-lg u-container-align-center-xl u-container-style u-custom-color-6 u-layout-cell u-size-60 u-layout-cell-1">
                       <div className="u-container-layout u-valign-top-xs u-container-layout-1">
-                        <h2 className="u-align-left u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-1">..... </h2>
+                        <span className="about-osnt-marker" aria-hidden="true" />
                       </div>
                     </div>
                   </div>

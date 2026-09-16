@@ -1,15 +1,19 @@
 import { Link, useLocation } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type MouseEvent } from 'react'
 
 export default function Header() {
   const location = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
 
   const closeMenu = () => setMenuOpen(false)
+  const toggleDropdown = (name: string) => (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault()
+    setOpenDropdown((current) => current === name ? null : name)
+  }
 
   // Re-initialize Nicepage menu behavior after navigation
   useEffect(() => {
-    closeMenu()
     // Nicepage's menu JS relies on DOM ready; trigger it after route changes
     if (typeof window !== 'undefined' && (window as any).nicepage) {
       try {
@@ -74,10 +78,11 @@ export default function Header() {
                   Home
                 </Link>
               </li>
-              <li className="u-nav-item">
+              <li className={`u-nav-item${openDropdown === 'about' ? ' submenu-open' : ''}`}>
                 <a
                   className="u-active-custom-color-3 u-border-2 u-border-active-custom-color-3 u-border-grey-30 u-border-hover-custom-color-5 u-border-no-bottom u-border-no-left u-border-no-top u-button-style u-hover-custom-color-5 u-nav-link u-text-active-white u-text-hover-custom-color-7 u-text-palette-5-light-3"
                   href="#"
+                  onClick={toggleDropdown('about')}
                   rel="nofollow"
                   style={{ padding: '0px 20px' }}
                 >
@@ -112,9 +117,11 @@ export default function Header() {
                   </ul>
                 </div>
               </li>
-              <li className="u-nav-item">
+              <li className={`u-nav-item${openDropdown === 'academics' ? ' submenu-open' : ''}`}>
                 <a
                   className="u-active-custom-color-3 u-border-2 u-border-active-custom-color-3 u-border-grey-30 u-border-hover-custom-color-5 u-border-no-bottom u-border-no-left u-border-no-top u-button-style u-hover-custom-color-5 u-nav-link u-text-active-white u-text-hover-custom-color-7 u-text-palette-5-light-3"
+                  href="#"
+                  onClick={toggleDropdown('academics')}
                   rel="nofollow"
                   style={{ padding: '0px 20px' }}
                 >
@@ -141,9 +148,11 @@ export default function Header() {
                   </ul>
                 </div>
               </li>
-              <li className="u-nav-item">
+              <li className={`u-nav-item${openDropdown === 'student' ? ' submenu-open' : ''}`}>
                 <a
                   className="u-active-custom-color-3 u-border-2 u-border-active-custom-color-3 u-border-grey-30 u-border-hover-custom-color-5 u-border-no-bottom u-border-no-left u-border-no-top u-button-style u-hover-custom-color-5 u-nav-link u-text-active-white u-text-hover-custom-color-7 u-text-palette-5-light-3"
+                  href="#"
+                  onClick={toggleDropdown('student')}
                   style={{ padding: '0px 20px' }}
                 >
                   Student Corner
@@ -159,14 +168,12 @@ export default function Header() {
                       </Link>
                     </li>
                     <li className="u-nav-item">
-                      <a
+                      <Link
                         className="u-active-custom-color-5 u-button-style u-custom-color-13 u-hover-white u-nav-link u-text-active-white u-text-hover-custom-color-3 u-text-white"
-                        href="https://parivarthanaschool.com/360virtualtour/index.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        to="/360virtualtour"
                       >
                         360° Virtual Tour
-                      </a>
+                      </Link>
                     </li>
                     <li className="u-nav-item">
                       <Link
@@ -211,7 +218,13 @@ export default function Header() {
           </div>
 
           {/* Mobile sidenav */}
-          <div className="u-custom-menu u-nav-container-collapse">
+          <div
+            className="u-custom-menu u-nav-container-collapse"
+            onClick={(event) => {
+              const anchor = (event.target as HTMLElement).closest('a')
+              if (anchor && anchor.getAttribute('href') !== '#') closeMenu()
+            }}
+          >
             <div className="u-align-center u-black u-container-align-center u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav u-sidenav-1">
               <div className="u-inner-container-layout u-sidenav-overflow" style={{ padding: '0px' }}>
                 <button className="u-menu-close" type="button" onClick={closeMenu} aria-label="Close navigation menu"></button>
@@ -219,8 +232,8 @@ export default function Header() {
                   <li className="u-nav-item">
                     <Link className="u-button-style u-nav-link" to="/">Home</Link>
                   </li>
-                  <li className="u-nav-item">
-                    <a className="u-button-style u-nav-link" href="#" rel="nofollow">About</a>
+                  <li className={`u-nav-item${openDropdown === 'mobile-about' ? ' submenu-open' : ''}`}>
+                    <a className="u-button-style u-nav-link" href="#" rel="nofollow" onClick={toggleDropdown('mobile-about')}>About</a>
                     <div className="u-nav-popup">
                       <ul className="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-6">
                         <li className="u-nav-item">
@@ -235,8 +248,8 @@ export default function Header() {
                       </ul>
                     </div>
                   </li>
-                  <li className="u-nav-item">
-                    <a className="u-button-style u-nav-link" rel="nofollow">Academics</a>
+                  <li className={`u-nav-item${openDropdown === 'mobile-academics' ? ' submenu-open' : ''}`}>
+                    <a className="u-button-style u-nav-link" href="#" rel="nofollow" onClick={toggleDropdown('mobile-academics')}>Academics</a>
                     <div className="u-nav-popup">
                       <ul className="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-7">
                         <li className="u-nav-item">
@@ -248,15 +261,15 @@ export default function Header() {
                       </ul>
                     </div>
                   </li>
-                  <li className="u-nav-item">
-                    <a className="u-button-style u-nav-link">Student Corner</a>
+                  <li className={`u-nav-item${openDropdown === 'mobile-student' ? ' submenu-open' : ''}`}>
+                    <a className="u-button-style u-nav-link" href="#" onClick={toggleDropdown('mobile-student')}>Student Corner</a>
                     <div className="u-nav-popup">
                       <ul className="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-8">
                         <li className="u-nav-item">
                           <Link className="u-button-style u-custom-color-13 u-nav-link" to="/campus-life">Life at Parivarthana</Link>
                         </li>
                         <li className="u-nav-item">
-                          <a className="u-button-style u-custom-color-13 u-nav-link" href="https://parivarthanaschool.com/360virtualtour/index.html" target="_blank" rel="noopener noreferrer">360° Virtual Tour</a>
+                          <Link className="u-button-style u-custom-color-13 u-nav-link" to="/360virtualtour">360° Virtual Tour</Link>
                         </li>
                         <li className="u-nav-item">
                           <Link className="u-button-style u-custom-color-13 u-nav-link" to="/gallery">Gallery</Link>

@@ -29,7 +29,10 @@ This checklist records verification for the React migration. Items are marked co
 - [x] Back-to-top control is present
 - [x] Existing hover, parallax, and Nicepage animation class system is retained
 - [x] Google Maps embed remains lazy-loaded
-- [ ] Local 360° viewer controls and scene navigation — not verifiable because the supplied repository contains no local tour implementation or panorama assets
+- [x] Local 360° viewer route loads the generated TDV player and tiled panorama runtime
+- [x] Tour initialization exposes generated location labels and 141 rendered canvases
+- [x] Tour scene switching changes the exported deep-link state (`Aerial View` → `Parivarthana-43`)
+- [x] Tour runtime exposes pause/resume, media switching, and deep-link APIs
 
 ## Responsive behavior
 
@@ -46,8 +49,8 @@ This checklist records verification for the React migration. Items are marked co
 - [x] `npm run dev` browser smoke test (representative routes and local assets returned HTTP 200)
 - [x] `npm run preview` browser smoke test (representative route returned HTTP 200)
 - [x] Static asset path audit after migration edits
-- [ ] Full console-error audit in a browser session
+- [x] Browser runtime audit completed for the integrated `/360virtualtour` route
 
 ## Remaining issue
 
-The only unresolved source-level feature is the 360° tour implementation, which is absent from the supplied repository. The navigation now points to the corresponding external production destination instead of a broken local path.
+The generated tour runtime is preserved locally under `public/360virtualtour` and is mounted by the React-owned `/360virtualtour` route. A full manual gesture-by-gesture QA pass at every requested viewport remains a follow-up item; the live browser initialization and scene-switch checks passed.

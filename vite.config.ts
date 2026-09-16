@@ -7,5 +7,8 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     allowedHosts: true,
+    watch: {
+      ignored: ['**/public/360virtualtour/**'],
+    },
   },
 })
