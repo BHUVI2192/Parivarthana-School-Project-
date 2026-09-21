@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const A='/assets/'
+const A=import.meta.env.BASE_URL+'assets/'
 
 export function AnalyticsPage(){useEffect(()=>{document.title='Website Analytics Dashboard'},[]);return <main><section className="analytics-hero"><div className="container"><p className="eyebrow">Parivarthana insights</p><h1>Website Analytics Dashboard</h1><p>Understand how visitors discover and explore the Parivarthana website.</p></div></section><section className="section"><div className="container"><div className="metric-grid"><article><span>12,450</span><h3>Total Page Views</h3></article><article><span>2m 45s</span><h3>Avg. Time Spent</h3></article><article><span>4,890</span><h3>Link Clicks</h3></article></div><div className="analytics-grid"><article className="analytics-panel"><p className="eyebrow">Audience</p><h2>Visitors by Location</h2><div className="bar-list"><div><span>Bengaluru</span><b style={{width:'45%'}}>45%</b></div><div><span>Mysuru</span><b style={{width:'30%'}}>30%</b></div><div><span>Mandya</span><b style={{width:'15%'}}>15%</b></div><div><span>Others</span><b style={{width:'10%'}}>10%</b></div></div></article><article className="analytics-panel"><p className="eyebrow">Acquisition</p><h2>Top Traffic Sources</h2><div className="bar-list"><div><span>Direct</span><b style={{width:'50%'}}>50%</b></div><div><span>Search</span><b style={{width:'35%'}}>35%</b></div><div><span>Social Media</span><b style={{width:'15%'}}>15%</b></div></div></article></div></div></section></main>}
 
