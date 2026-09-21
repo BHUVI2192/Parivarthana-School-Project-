@@ -10,7 +10,7 @@ type NavEntry={label:string;to?:string;children?:NavEntry[]}
 const navItems: NavEntry[] = [
   {label:'About',children:[{label:'About OSNT',to:'/about-osnt'},{label:'About Parivarthana',to:'/about-parivarthana'},{label:'Leadership',to:'/leadership'}]},
   {label:'Academics',children:[{label:'School',to:'/school'},{label:'PUC',to:'/puc'}]},
-  {label:'Student Corner',children:[{label:'Campus Life',to:'/campus-life',children:[{label:'Boarding at Parivarthana',to:'/boarding'}]},{label:'Gallery',to:'/gallery'},{label:'360° Virtual Tour',to:'/360virtualtour'}]},
+  {label:'Student Corner',children:[{label:'Campus Life',to:'/campus-life'},{label:'Gallery',to:'/gallery'},{label:'360° Virtual Tour',to:'/360virtualtour'}]},
 ]
 
 
