@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
 import { Link, BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { AnalyticsPage, NewsEventsPage, SearchPage, CampusLifePage, PUCPage, LeadershipPage, ContactParityPage, SchoolParityPage, BoardingPage, } from './extendedPages'
+import { AdmissionPopup } from './AdmissionPopup'
+import { submitFormToGoogleSheets } from './utils/formSubmit'
 
 const A = import.meta.env.BASE_URL + 'assets/'
 const leaders = [['Dr. M Puttegowda', 'Founder Chairman', 'WhatsAppImage2024-12-28at18.53.02_dd362707.jpg'], ['Mr. Manjuram Puttegowda', 'Managing Director', 'PERSON871.jpg'], ['Mr. B V Kumar', 'Managing Trustee', 'PERSON951.jpg'], ['Dr. Dhananjaya K B', 'Treasurer', 'PERSON731.jpg']]
@@ -18,7 +20,7 @@ function NavLinks({ items, depth = 0 }: { items: NavEntry[]; depth?: number }) {
 function Header() { const [open, setOpen] = useState(false); const [drop, setDrop] = useState(''); const loc = useLocation(); useEffect(() => setOpen(false), [loc.pathname]); return <header className="site-header"><div className="container nav-wrap"><Link to="/" className="brand"><img src={A + 'images/pixelcut-export.png'} alt="Parivarthana logo" /><span>PARIVARTHANA<small>RESIDENTIAL SCHOOL & PU COLLEGE</small></span></Link><button className="menu-button" aria-label="Toggle menu" onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'}</button><nav className={open ? 'nav open' : 'nav'}>{navItems.map(group => <div className="nav-group" key={group.label}><button aria-expanded={drop === group.label} onClick={() => setDrop(drop === group.label ? '' : group.label)}>{group.label} <span>⌄</span></button><div className={drop === group.label ? 'dropdown show' : 'dropdown'}><NavLinks items={group.children || []} /></div></div>)}<Link to="/news-events">News & Events</Link><Link to="/contact">Contact</Link><Link className="nav-cta" to="/admissions">Admission enquiry</Link></nav></div></header> }
 function Footer() { return <footer className="footer"><div className="container footer-grid"><div><img className="footer-logo" src={A + 'images/pixelcut-export.png'} alt="Parivarthana logo" /><p>Parivarthana Residential School & PU College</p><p className="muted">Transforming minds, shaping future.</p></div><div><h3>Explore</h3><Link to="/about-parivarthana">About Parivarthana</Link><Link to="/school">School</Link><Link to="/puc">PUC</Link><Link to="/campus-life">Campus Life</Link></div><div><h3>Connect</h3><Link to="/admissions">Admissions</Link><Link to="/gallery">Gallery</Link><Link to="/analytics">Analytics</Link><a href="https://parivarthanaschool.com/post/" target="_blank">News and Events</a></div><div><h3>Contact</h3><a href="https://maps.app.goo.gl/HguLH9ZTeiCYmQt29" target="_blank">Near check post, Bengaluru–Mysuru Highway, Srirangapatna, Karnataka - 571438</a><a href="tel:9980656888">+91 9980656888</a><a href="mailto:info@parivarthanaschool.com">info@parivarthanaschool.com</a><div className="social"><a href="https://wa.me/917899729937" target="_blank">WhatsApp</a><a href="https://www.instagram.com/parivarthanaschoolandpuclg" target="_blank">Instagram</a></div></div></div><div className="container footer-bottom">© Parivarthana Residential School and PU College</div></footer> }
 function BackToTop() { const [visible, setVisible] = useState(false); useEffect(() => { const onScroll = () => setVisible(window.scrollY > 520); window.addEventListener('scroll', onScroll, { passive: true }); return () => window.removeEventListener('scroll', onScroll) }, []); return visible ? <button className="back-to-top" aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>↑</button> : null }
-function Layout({ children }: { children: React.ReactNode }) { return <><Header />{children}<Footer /><BackToTop /></> }
+function Layout({ children }: { children: React.ReactNode }) { return <><Header />{children}<Footer /><BackToTop /><AdmissionPopup /></> }
 function Hero({ eyebrow, title, summary, image = 'img3.jpg' }: { eyebrow: string, title: string, summary?: string, image?: string }) { return <header className="hero" style={{ backgroundImage: `url(${A}images/${image})` }}><div className="container hero-content"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1>{summary && <p>{summary}</p>}</div></header> }
 function Reveal({ children, className = '' }: { children: React.ReactNode, className?: string }) { const ref = useRef<HTMLDivElement>(null); useEffect(() => { const node = ref.current; if (!node) return; const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { node.classList.add('is-visible'); observer.unobserve(node) } }, { threshold: .12, rootMargin: '0px 0px -40px' }); observer.observe(node); return () => observer.disconnect() }, []); return <div ref={ref} className={`reveal ${className}`}>{children}</div> }
 function Section({ eyebrow, title, children, alt = false }: { eyebrow?: string, title?: string, children: React.ReactNode, alt?: boolean }) { return <section className={alt ? 'section alt' : 'section'}><div className="container"><Reveal>{title && <div className="section-heading">{eyebrow && <p className="eyebrow">{eyebrow}</p>}<h2>{title}</h2></div>}{children}</Reveal></div></section> }
@@ -30,7 +32,62 @@ function School() { return <main><Hero eyebrow="Academics" title="School" summar
 function PUC() { return <main><Hero eyebrow="Academics" title="PUC" summary="Focused pathways for higher education and future opportunity." /><Section eyebrow="Choose your path" title="Balanced academic programs" alt><div className="program-grid three"><article className="program"><span className="feature-number">01</span><h3>Science</h3><p>Build a strong foundation for higher education through focused science learning and disciplined academic practice.</p></article><article className="program"><span className="feature-number">02</span><h3>Commerce</h3><p>Develop commercial awareness, analytical thinking, and the confidence to pursue future business studies.</p></article><article className="program"><span className="feature-number">03</span><h3>Campus facilities</h3><p>Learn in a supportive residential environment with modern infrastructure and a connection to nature.</p></article></div></Section></main> }
 function Campus() { return <main><Hero eyebrow="Life at Parivarthana" title="Campus Life" summary="A vibrant residential environment where students learn, live, and grow together." /><Section title="A place to belong"><div className="intro-grid"><img src={A + 'images/Hostel51.jpg'} alt="Parivarthana campus life" /><div><p className="lead">Immerse your child in a safe, supportive campus environment designed for learning, community, and personal growth.</p><p>Our campus facilities create a balanced experience beyond the classroom, with space for study, sport, creativity, and connection.</p></div></div></Section><Section eyebrow="Explore our facilities" title="Designed for everyday growth" alt><div className="facility-grid">{[['Boarding and residence', 'Hostel51.jpg'], ['Learning spaces', '_MG_11351.jpg'], ['Sports and recreation', 'DSCN0069.JPG'], ['Community life', '3.CelebrationsPariA3.jpg']].map(([t, img]) => <article className="facility" key={t}><img src={A + 'images/' + img} alt={t} /><div><p className="eyebrow">Parivarthana campus</p><h3>{t}</h3><p>A thoughtful space that supports student development, belonging, and a well-rounded residential experience.</p></div></article>)}</div></Section></main> }
 function Gallery() { return <main><Hero eyebrow="Life at Parivarthana" title="Gallery" summary="Moments from our campus, community, and student life." /><Section><div className="gallery-grid">{gallery.map((img, i) => <img loading="lazy" src={A + 'images/' + img} alt={`Parivarthana gallery ${i + 1}`} key={img + i} />)}</div></Section></main> }
-function Admissions() { return <main><Hero eyebrow="Admissions" title="Begin the journey" summary="Our application process is simple and streamlined, allowing students to easily submit their details and track their progress through a secure online portal." /><Section title="How to apply?" alt><div className="steps">{[['01', 'Enter your email', 'Begin by entering your email address on the application portal to start the process.'], ['02', 'Verify your details', 'Check your email for a verification link to confirm your email address and continue.'], ['03', 'Fill out the application form', 'Complete the form with personal, educational, and parent/guardian details, and upload required documents.'], ['04', 'Submit your application', 'Review your information, submit the form, and track your application status.']].map(([n, t, x]) => <article key={n}><span>{n}</span><h3>{t}</h3><p>{x}</p></article>)}</div></Section><Section title="Admission enquiry"><form className="form" action="https://docs.google.com/forms/d/e/1FAIpQLSeb5i_j1Hh0qoVmqJOoDcfKBVJVvrYZ5h6hlqPhpKT4PIkTWA/formResponse" method="POST" target="_blank"><label>Name<input name="entry.1374393062" required /></label><label>Email Id<input type="email" name="entry.1240529660" required /></label><label>Contact Number<input type="tel" name="entry.954636670" required /></label><label>Course<select name="entry.1687841758" required><option value="">Select a course</option><option>Primary School</option><option>Middle School</option><option>High School</option><option>PUC</option></select></label><button className="button" type="submit">Submit enquiry <span>→</span></button></form></Section></main> }
+function Admissions() {
+  const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setLoading(true)
+    const form = e.currentTarget
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value
+    const phone = (form.elements.namedItem('phone') as HTMLInputElement).value
+    const course = (form.elements.namedItem('course') as HTMLSelectElement).value
+
+    await submitFormToGoogleSheets({ name, email, phone, course })
+    setLoading(false)
+    setSubmitted(true)
+  }
+
+  return (
+    <main>
+      <Hero eyebrow="Admissions" title="Begin the journey" summary="Our application process is simple and streamlined, allowing students to easily submit their details and track their progress through a secure online portal." />
+      <Section title="How to apply?" alt>
+        <div className="steps">
+          {[['01', 'Enter your email', 'Begin by entering your email address on the application portal to start the process.'], ['02', 'Verify your details', 'Check your email for a verification link to confirm your email address and continue.'], ['03', 'Fill out the application form', 'Complete the form with personal, educational, and parent/guardian details, and upload required documents.'], ['04', 'Submit your application', 'Review your information, submit the form, and track your application status.']].map(([n, t, x]) => (
+            <article key={n}><span>{n}</span><h3>{t}</h3><p>{x}</p></article>
+          ))}
+        </div>
+      </Section>
+      <Section title="Admission enquiry">
+        {submitted ? (
+          <div className="modal-success" style={{ background: '#fff', padding: '32px', borderRadius: '18px', boxShadow: 'var(--shadow-sm)' }}>
+            <div className="modal-success-icon">✓</div>
+            <h3>Enquiry Submitted Successfully!</h3>
+            <p>Thank you for submitting your enquiry. Our admissions team will reach out to you shortly.</p>
+          </div>
+        ) : (
+          <form className="form" onSubmit={handleSubmit}>
+            <label>Name<input name="name" required /></label>
+            <label>Email Id<input type="email" name="email" required /></label>
+            <label>Contact Number<input type="tel" name="phone" required /></label>
+            <label>Course
+              <select name="course" required>
+                <option value="">Select a course</option>
+                <option value="Primary School">Primary School</option>
+                <option value="Middle School">Middle School</option>
+                <option value="High School">High School</option>
+                <option value="PUC">PUC</option>
+              </select>
+            </label>
+            <button className="button" type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit enquiry'} <span>→</span></button>
+          </form>
+        )}
+      </Section>
+    </main>
+  )
+}
 function Contact() { return <main><Hero eyebrow="Contact" title="Let’s start a conversation" summary="Reach out to learn more about Parivarthana School and PU College." /><Section title="Contact information"><div className="contact-grid"><div><p className="eyebrow">Visit us</p><h3>Parivarthana School and PU College</h3><p>Near check post, Bengaluru -Mysuru Highway, Srirangapatna, Karnataka - 571438</p><a className="text-link" href="tel:9980656888">+91 9980656888</a><a className="text-link" href="mailto:info@parivarthanaschool.com">info@parivarthanaschool.com</a></div><form className="form"><label>Name<input required /></label><label>Email<input type="email" required /></label><label>Message<textarea rows={5} required /></label><button className="button" type="submit">Send message <span>→</span></button></form></div></Section><Section title="Find us" alt><iframe className="map" title="Parivarthana location" src="https://www.google.com/maps?q=Srirangapatna%20Karnataka&output=embed" loading="lazy" /></Section></main> }
 function Utility({ title, children }: { title: string, children?: React.ReactNode }) { return <main><Hero eyebrow="Parivarthana" title={title} /><Section>{children || <div className="utility"><h2>{title}</h2><p>This page remains available in the new application with its original route and purpose.</p></div>}</Section></main> }
 function Tour() {
