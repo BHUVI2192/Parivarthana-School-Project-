@@ -7,18 +7,14 @@ export function AdmissionPopup() {
   const [submitted, setSubmitted] = useState(false)
 
   useEffect(() => {
-    const dismissed = sessionStorage.getItem('parivarthana_popup_dismissed')
-    if (!dismissed) {
-      const timer = setTimeout(() => {
-        setIsOpen(true)
-      }, 800)
-      return () => clearTimeout(timer)
-    }
+    const timer = setTimeout(() => {
+      setIsOpen(true)
+    }, 400)
+    return () => clearTimeout(timer)
   }, [])
 
   const handleClose = () => {
     setIsOpen(false)
-    sessionStorage.setItem('parivarthana_popup_dismissed', 'true')
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
