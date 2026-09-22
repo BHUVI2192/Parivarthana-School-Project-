@@ -1,5 +1,5 @@
 <IfModule mod_headers.c>
-Header always set Content-Security-Policy "default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://apis.google.com https://img1.wsimg.com; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:; font-src 'self' data: https:; connect-src 'self' https: wss:; frame-src 'self' https://script.google.com; object-src 'self' data:; worker-src 'self' blob:;"
+Header always set Content-Security-Policy "default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://apis.google.com https://img1.wsimg.com; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:; font-src 'self' data: https:; connect-src 'self' https: wss:; frame-src 'self' https://script.google.com https://www.google.com; object-src 'self' data:; worker-src 'self' blob:;"
 </IfModule>
 
 RewriteEngine On
