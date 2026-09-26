@@ -6,42 +6,41 @@ export type AdmissionFormData = {
   message?: string
 }
 
-// Google Apps Script Web App — writes directly to the Google Sheet
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMmzDmZlmo3tfhvd6CgmEHEN2Hed216e1Oixaqdf2_QQRDtmEB0BpseiD_B6D36aX5Vw/exec"
+// Your Google Apps Script Web App URL
+const APPS_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbzGI-JwKSzUWWOB5QNpJ6ADPux9I4scp9nEjnjgEXQwrzrZV352bt8b_LeZdN4lL6C1YA/exec'
 
-export async function submitFormToGoogleSheets(data: AdmissionFormData) {
-  const params = new URLSearchParams()
-  params.append("name", data.name)
-  params.append("email", data.email)
-  params.append("phone", data.phone)
-  params.append("course", data.course)
-  params.append("message", data.message || '')
-
-  // Submit via hidden iframe so it bypasses CORS/no-cors opaque response issues
-  const iframeName = 'gform_' + Math.random().toString(36).substring(2, 8)
-  const iframe = document.createElement('iframe')
-  iframe.name = iframeName
-  iframe.style.display = 'none'
-  document.body.appendChild(iframe)
-
-  const form = document.createElement('form')
-  form.action = APPS_SCRIPT_URL
-  form.method = 'POST'
-  form.target = iframeName
-
-  params.forEach((val, key) => {
-    const input = document.createElement('input')
-    input.type = 'hidden'
-    input.name = key
-    input.value = val
-    form.appendChild(input)
+/**
+ * Submits form data to the Google Apps Script Web App which writes a row
+ * into the connected Google Sheet.
+ *
+ * Uses application/x-www-form-urlencoded with no-cors:
+ *  - "Simple" content-type → no CORS preflight needed
+ *  - Request IS delivered to Apps Script (we just can't read the response)
+ *  - Works from localhost AND production
+ */
+export async function submitFormToGoogleSheets(
+  data: AdmissionFormData
+): Promise<void> {
+  const params = new URLSearchParams({
+    name: data.name,
+    email: data.email,
+    phone: data.phone,
+    course: data.course,
+    message: data.message ?? '',
   })
 
-  document.body.appendChild(form)
-  form.submit()
-
-  setTimeout(() => {
-    form.remove()
-    iframe.remove()
-  }, 5000)
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors', // opaque response — but request IS sent & received
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: params.toString(),
+    })
+  } catch (err) {
+    // Network error (e.g. offline). Re-throw so callers can handle it.
+    throw err
+  }
 }
